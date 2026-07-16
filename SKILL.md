@@ -18,6 +18,42 @@ metadata:
   collection: portfolio-risk-validation
 ---
 
+```json qsh-form
+{
+  "version": 1,
+  "task": {
+    "placeholder": "请说明风险模型或归因目标，并上传收益率、市值、行业及需要归因时的组合权重数据",
+    "required": true
+  },
+  "fields": [
+    {
+      "key": "mode",
+      "label": "分析模式",
+      "type": "select",
+      "default": "full",
+      "options": [
+        { "value": "full", "label": "建模与风险归因" },
+        { "value": "covariance", "label": "构建协方差矩阵" },
+        { "value": "attribution", "label": "组合风险归因" }
+      ]
+    },
+    {
+      "key": "universe",
+      "label": "股票池",
+      "type": "text",
+      "placeholder": "如：沪深300、自定义持仓池；需保证标的数显著多于因子数"
+    },
+    {
+      "key": "focus",
+      "label": "重点关注",
+      "type": "text",
+      "placeholder": "如：风格因子贡献、行业风险、特异风险、优化器输入"
+    }
+  ],
+  "prompt_template": "{{#task}}任务与材料：\n{{task}}\n\n{{/task}}{{#attachments}}用户上传的材料（已放入工作区）：\n{{attachments}}\n\n{{/attachments}}请执行 Barra 风格结构化多因子风险模型 {{mode}}。{{#universe}}股票池为 {{universe}}。{{/universe}}{{#focus}}重点关注：{{focus}}。{{/focus}}校验收益率、市值、行业及组合权重输入，以逐日 WLS 估计因子收益，用 EWMA 估计因子协方差与特异风险并做 PSD 修正，明确区分 factor_cov 与供优化器使用的 asset_cov，给出组合年化波动、因子/特异风险拆分和逐因子贡献，输出中文报告。"
+}
+```
+
 # skill-risk-model
 
 role: skill · output: factor covariance + specific risk + risk attribution · paradigm: structural multi-factor (Barra-style)
