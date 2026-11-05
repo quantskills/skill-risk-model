@@ -7,7 +7,7 @@ description: >
   industries), or wants factor vs specific risk decomposition. Estimates style
   & industry factor returns via cross-sectional regression, factor covariance
   and specific risk.
-license: GPL-3.0
+license: GPL-3.0-only
 category: 分析
 metadata:
   organization: QuantSkills
@@ -129,3 +129,7 @@ skill-risk-model/
 ```
 
 仅供研究/方法论参考，不构成投资建议。
+
+## Pandadata compatibility
+
+[Pandadata 1.0.6 compatibility](references/pandadata-compatibility.md) — exact SDK baseline, validation scope, and shared guidance for all supported agent runtimes.
